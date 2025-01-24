@@ -1,6 +1,8 @@
- # Net Spot
+<p align="center">
+  <img alt="Net Spot Lite" src="net-spot-lite.png" width="300px" />
+</p>
 
-Net Spot é uma aplicação web desenvolvida para agilizar o processo de consulta de viabilidade de internet fibra de diversas operadoras. O sistema é destinado exclusivamente ao uso interno por equipes de vendas de uma empresa credenciada para comercializar serviços de internet de diferentes operadoras.
+**Net Spot** é uma aplicação web desenvolvida para agilizar o processo de consulta de viabilidade de internet fibra de diversas operadoras. O sistema é destinado exclusivamente ao uso interno por equipes de vendas de uma empresa credenciada para comercializar serviços de internet de diferentes operadoras.
 
 ## Objetivo
 
