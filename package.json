@@ -1,0 +1,19 @@
+{
+  "name": "net-spot",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">\r   <img alt=\"Net Spot Lite\" src=\"net-spot-lite.png\" width=\"300px\" />\r </p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuiStelmach/net-spot.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GuiStelmach/net-spot/issues"
+  },
+  "homepage": "https://github.com/GuiStelmach/net-spot#readme"
+}
