@@ -2,9 +2,9 @@
 @font-face {
     font-family: 'Outfit-Regular';
     /* Nome para a fonte regular */
-    src: url('/frontend/assets/fonts/Outfit-Regular.woff2') format('woff2'),
-        url('/frontend/assets/fonts/Outfit-Regular.woff') format('woff'),
-        url('/frontend/assets/fonts/Outfit-Regular.ttf') format('truetype');
+    src: url('./frontend/assets/fonts/Outfit-Regular.woff2') format('woff2'),
+        url('./frontend/assets/fonts/Outfit-Regular.woff') format('woff'),
+        url('./frontend/assets/fonts/Outfit-Regular.ttf') format('truetype');
     font-weight: normal;
     /* Peso normal */
     font-style: normal;
@@ -14,9 +14,9 @@
 @font-face {
     font-family: 'Outfit-Bold';
     /* Nome para a fonte bold */
-    src: url('/frontend/assets/fonts/Outfit-Bold.woff2') format('woff2'),
-        url('/frontend/assets/fonts/Outfit-Bold.woff') format('woff'),
-        url('/frontend/assets/fonts/Outfit-Bold.ttf') format('truetype');
+    src: url('./frontend/assets/fonts/Outfit-Bold.woff2') format('woff2'),
+        url('./frontend/assets/fonts/Outfit-Bold.woff') format('woff'),
+        url('./frontend/assets/fonts/Outfit-Bold.ttf') format('truetype');
     font-weight: bold;
     /* Peso bold */
     font-style: normal;
@@ -33,8 +33,8 @@
 
 body {
     background-image:
-        url("/frontend/assets/images/listralarga.svg"),
-        url('/frontend/assets/images/listramedia.svg');
+        url("./frontend/assets/images/listralarga.svg"),
+        url('./frontend/assets/images/listramedia.svg');
     background-repeat: no-repeat;
     background-position:
         105% bottom,
