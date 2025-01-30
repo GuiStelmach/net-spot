@@ -108,11 +108,11 @@ body {
 }
 
 .logo img {
-    max-width: 100%;
+    max-width: 90%;
     /* Faz com que a imagem ocupe toda a largura possível sem ultrapassar o limite */
     height: auto;
     /* Mantém a proporção da imagem (altura ajustada proporcionalmente) */
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     /* Adiciona um espaço entre a imagem e o próximo item (formulário) */
 }
 
