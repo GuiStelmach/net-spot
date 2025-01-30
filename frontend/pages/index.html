@@ -25,16 +25,18 @@
             <img src="/frontend/assets/images/net-spot-lite.png" alt="Logo do Net Spot">
         </div>
         <div class="body-consult-itens">
-            <form action="GET">
+            <form id="coverage-form">
                 <label for="cep">CEP:</label>
-                <input type="text" id="cep" name="cep" placeholder="Digite o CEP" required>
-
+                <input type="text" id="zipcode" name="cep" placeholder="Digite o CEP" required>
+        
                 <label for="numero">Número:</label>
-                <input type="text" id="numero" name="numero" placeholder="Digite o número" required>
-
+                <input type="text" id="number" name="numero" placeholder="Digite o número" required>
+        
                 <button type="submit">Consultar</button>
             </form>
         </div>
+        <div id="loading" style="display: none;">🔄 Carregando...</div>
+        <div id="result"></div>
     </div>
     <div class="response-container">
         <!-- <div class="response-coverage">
@@ -50,6 +52,7 @@
     <div class="footer">
         <p>Desenvolvidor por <a href="http://github.com/GuiStelmach">@GuiStelmach</a></p>
     </div>
+    <script src="../../backend/api/provider.js"></script>
 
 </body>
 

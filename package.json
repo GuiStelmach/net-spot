@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/GuiStelmach/net-spot/issues"
   },
-  "homepage": "https://github.com/GuiStelmach/net-spot#readme"
+  "homepage": "https://github.com/GuiStelmach/net-spot#readme",
+  "dependencies": {
+    "net-spot": "file:"
+  }
 }
