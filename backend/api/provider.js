@@ -1,38 +1,15 @@
-document.getElementById("coverage-form").addEventListener("submit", async function(event) {
-    event.preventDefault(); // Evita o recarregamento da página
-
-    const zipcode = document.getElementById("zipcode").value.trim();
-    const number = document.getElementById("number").value.trim();
-    const resultDiv = document.getElementById("result");
-    const loadingDiv = document.getElementById("loading");
-
-    if (!zipcode || !number) {
-        resultDiv.innerHTML = "<p style='color: red;'>Por favor, preencha todos os campos.</p>";
-        return;
-    }
-
-    // Exibir "Carregando..."
-    resultDiv.innerHTML = "";
-    loadingDiv.style.display = "block";
-
-    try {
-        const providers = await fetchCoverageData(zipcode, number);
-        
-        if (typeof providers === "string") {
-            resultDiv.innerHTML = `<p style="color: red;">${providers}</p>`;
-        } else {
-            resultDiv.innerHTML = `<p>Provedores disponíveis: <strong>${providers.join(", ")}</strong></p>`;
-        }
-    } catch (error) {
-        resultDiv.innerHTML = "<p style='color: red;'>Erro ao buscar os dados de cobertura.</p>";
-    } finally {
-        // Ocultar "Carregando..." independentemente do resultado
-        loadingDiv.style.display = "none";
-    }
-});
-
 async function fetchCoverageData(zipcode, number) {
-    const url = `https://cep.melhorplano.net/api/v1/postcodes/coverage?timeout=20000&c=tim%2Csky%2Cunifique%2Cclaro%2Cvero+internet&number=${number}&postcode=${zipcode}`;
+    const selectedOperators = [];
+    if (document.getElementById('tim').checked) selectedOperators.push('tim');
+    if (document.getElementById('sky').checked) selectedOperators.push('sky');
+    if (document.getElementById('unifique').checked) selectedOperators.push('unifique');
+    if (document.getElementById('claro').checked) selectedOperators.push('claro');
+    if (document.getElementById('vero-internet').checked) selectedOperators.push('vero internet');
+    if (document.getElementById('oi').checked) selectedOperators.push('oi');
+
+    const operators = selectedOperators.join('%2C');
+
+    const url = `https://cep.melhorplano.net/api/v1/postcodes/coverage?timeout=20000&c=${operators}&number=${number}&postcode=${zipcode}`;
 
     try {
         const response = await fetch(url, {
@@ -55,7 +32,7 @@ async function fetchCoverageData(zipcode, number) {
 
         return providersWithMinSpeed.length > 0 
             ? providersWithMinSpeed 
-            : "Sem Viabilidade TIM, SKY, Unifique, Claro ou Vero.";
+            : "Sem Viabilidade.";
     } catch (error) {
         console.error("Erro ao buscar dados de cobertura:", error);
         throw error;

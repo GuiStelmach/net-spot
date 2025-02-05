@@ -29,6 +29,11 @@
     padding: 0;
     /* Remove o padding padrão de todos os elementos */
 
+    --text-ligth-mode: #000;
+    --bg-ligth-mode: #f4f4f4;
+    --text-dark-mode: #f4f4f4;
+    --bg-dark-mode: #142136;
+
 }
 
 body {
@@ -109,9 +114,9 @@ body {
 }
 
 .logo img {
-    max-width: 90%;
+    max-width: 100%;
     /* Faz com que a imagem ocupe toda a largura possível sem ultrapassar o limite */
-    height: auto;
+    height: 120px;
     /* Mantém a proporção da imagem (altura ajustada proporcionalmente) */
     margin-bottom: 0px;
     /* Adiciona um espaço entre a imagem e o próximo item (formulário) */
@@ -143,7 +148,7 @@ body {
 form {
     display: flex;
     /* Define o modelo de layout flexível para os itens dentro do formulário */
-    flex-direction: row;
+    flex-direction: column;
     /* Organiza os itens na horizontal (label e input lado a lado) */
     gap: 10px;
     /* Adiciona 10px de espaço entre os itens do formulário */
@@ -151,6 +156,42 @@ form {
     /* Alinha os itens verticalmente no centro */
     justify-content: center;
     /* Centraliza os itens horizontalmente dentro do formulário */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    /* Mantém os campos CEP e Número na mesma linha */
+    gap: 10px;
+    align-items: center;
+}
+
+fieldset {
+    width: 100%;
+    /* Faz o fieldset ocupar toda a largura disponível */
+    max-width: 450px;
+    /* Define uma largura máxima para melhor visualização */
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    /* Alinha os itens dentro do fieldset */
+}
+
+legend {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+label input[type="checkbox"] {
+    margin-right: 5px;
+    transform: scale(1.2);
 }
 
 label {
@@ -205,26 +246,80 @@ button:hover {
     /* Altera a cor de fundo do botão para um azul mais claro quando o mouse passa por cima */
 }
 
+fieldset {
+    border: 2px solid #ccc;
+    /* Adiciona uma borda cinza ao redor do fieldset */
+    border-radius: 4px;
+    /* Arredonda as bordas do fieldset */
+    padding: 10px 15px;
+    /* Adiciona espaçamento interno ao fieldset */
+    margin: 10px 0;
+    /* Adiciona margem acima e abaixo do fieldset */
+    display: flex;
+    /* Usa layout flexível */
+    flex-wrap: wrap;
+    /* Permite que os elementos quebrem para a linha de baixo se necessário */
+    gap: 10px;
+    /* Adiciona espaçamento entre os elementos internos */
+    align-items: center;
+    /* Alinha os itens verticalmente no centro */
+}
+
+legend {
+    font-size: 18px;
+    /* Define o tamanho da fonte do legend */
+    font-weight: bold;
+    /* Deixa o texto do legend em negrito */
+    color: #333;
+    /* Define uma cor escura para o texto do legend */
+}
+
+label input[type="checkbox"] {
+    margin-right: 5px;
+    /* Adiciona espaço entre a checkbox e o texto da label */
+    transform: scale(1.2);
+    /* Aumenta ligeiramente o tamanho da checkbox */
+}
+
+label {
+    display: flex;
+    /* Usa flexbox para alinhar checkbox e texto */
+    align-items: center;
+    /* Centraliza verticalmente */
+    font-size: 16px;
+    /* Define o tamanho da fonte das labels dentro do fieldset */
+    cursor: pointer;
+    /* Altera o cursor para uma mão ao passar sobre as labels */
+}
+
+
 .response-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center;
+    /* Centraliza o conteúdo horizontalmente */
     justify-content: center;
-    text-align: center; /* Centraliza o texto */
-    margin-top: 20px; /* Espaço entre o formulário e a resposta */
+    text-align: center;
+    /* Centraliza o texto */
+    margin-top: 50px;
+    /* Espaço entre o formulário e a resposta */
     width: 100%;
 }
 
 #loading {
+    padding: 50px;
     font-size: 18px;
     font-family: 'Outfit-Bold', sans-serif;
     color: #3a6cf7;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 #result {
+    margin-top: 35px;
     font-size: 20px;
     font-family: 'Outfit-Bold', sans-serif;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333;
     padding: 15px;
     border-radius: 8px;
@@ -242,5 +337,103 @@ button:hover {
     font-family: 'Outfit-Regular', sans-serif;
     font-size: 14px;
     padding: 10px 0;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Sombras opcionais */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade para telas menores */
+@media screen and (max-width: 1024px) {
+    body {
+        background-image:
+            url("../assets/images/listralarga.svg");
+        background-repeat: no-repeat;
+        background-position:
+            105% bottom;
+        height: 100vh;
+    }
+    .navbar {
+        flex-direction: column;
+        font-size: 20px;
+    }
+
+    .nav-links ul li {
+        display: block;
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .body-consult-itens {
+        width: 90%;
+        padding: 15px;
+    }
+
+    #result {
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .navbar {
+        font-size: 18px;
+    }
+
+    .nav-logo img {
+        max-width: 80px;
+    }
+
+    .body-consult .logo {
+        max-width: 300px;
+    }
+
+    .body-consult-itens {
+        max-width: 300px;
+    }
+
+    .form-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    label {
+        text-align: left;
+        width: 100%;
+    }
+
+    input,
+    button {
+        width: 100%;
+        max-width: none;
+    }
+
+    #result {
+        margin-top: 110px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        font-size: 16px;
+        padding: 5px;
+    }
+
+    .nav-logo img {
+        max-width: 60px;
+    }
+
+    .body-consult-itens {
+        padding: 10px;
+    }
+
+    .response-container {
+        font-size: 14px;
+    }
+
+    #result {
+        font-size: 18px;
+    }
+
+    .footer {
+        font-size: 12px;
+        padding: 8px 0;
+    }
 }

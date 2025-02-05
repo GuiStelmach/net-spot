@@ -26,19 +26,32 @@
         </div>
         <div class="body-consult-itens">
             <form id="coverage-form">
-                <label for="cep">CEP:</label>
-                <input type="text" id="zipcode" name="cep" placeholder="Digite o CEP" required>
-        
-                <label for="numero">Número:</label>
-                <input type="text" id="number" name="numero" placeholder="Digite o número" required>
-        
+                <div class="form-group" id="form-group">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="zipcode" name="cep" placeholder="Digite o CEP" required>
+
+                    <label for="numero">Número:</label>
+                    <input type="text" id="number" name="numero" placeholder="Digite o número" required>
+                </div>
+
+                <fieldset>
+                    <legend>Operadoras:</legend>
+                    <label><input type="checkbox" id="tim" name="tim" checked> TIM</label>
+                    <label><input type="checkbox" id="sky" name="sky" checked> SKY</label>
+                    <label><input type="checkbox" id="unifique" name="unifique" checked> Unifique</label>
+                    <label><input type="checkbox" id="claro" name="claro"> Claro</label>
+                    <label><input type="checkbox" id="vero-internet" name="vero-internet"> Vero</label>
+                    <label><input type="checkbox" id="oi" name="oi"> Oi</label>
+                </fieldset>
+
                 <button type="submit">Consultar</button>
             </form>
+
         </div>
     </div>
     <div class="response-container">
         <div id="loading" style="display: none;">🔄 Carregando...</div>
-        <div id="result"></div>
+        <div id="result" style="display: none;"></div>
         <!-- <div class="response-coverage">
             <div class="img-provider">
                 <img src="" alt="Logo do Provedor">
@@ -53,6 +66,9 @@
         <p>Desenvolvido por <a href="http://github.com/GuiStelmach">@GuiStelmach</a></p>
     </div>
     <script src="./backend/api/provider.js"></script>
+    <script src="backend/formValidate/validateZipcode.js"></script>
+    <script src="backend/formValidate/validateNumber.js"></script>
+    <script src="backend/formValidate/formValidation.js"></script>
 
 </body>
 
