@@ -8,7 +8,6 @@ async function fetchCoverageData(zipcode, number) {
     if (document.getElementById('oi').checked) selectedOperators.push('oi');
 
     const operators = selectedOperators.join('%2C');
-
     const url = `https://cep.melhorplano.net/api/v1/postcodes/coverage?timeout=20000&c=${operators}&number=${number}&postcode=${zipcode}`;
 
     try {
@@ -26,13 +25,18 @@ async function fetchCoverageData(zipcode, number) {
 
         const data = await response.json();
 
+        // Extrai o endereço do JSON
+        const { street, neighborhood, city, state } = data.postcodeRes.postcode;
+
+        // Filtra os provedores com velocidade mínima superior a 0
         const providersWithMinSpeed = Object.entries(data.postcodeRes.providers)
             .filter(([_, details]) => details.data.speed.min > 0)
             .map(([provider]) => provider.toUpperCase());
 
-        return providersWithMinSpeed.length > 0 
-            ? providersWithMinSpeed 
-            : "Sem Viabilidade.";
+        return {
+            address: { street, neighborhood, city, state },
+            providers: providersWithMinSpeed.length > 0 ? providersWithMinSpeed : []
+        };
     } catch (error) {
         console.error("Erro ao buscar dados de cobertura:", error);
         throw error;

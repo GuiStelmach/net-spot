@@ -54,48 +54,6 @@ body {
     height: 100vh;
 }
 
-/* Estiliza a barra de navegação (navbar) */
-.navbar {
-    font-family: 'Outfit-Bold', sans-serif;
-    /* Aplica a fonte personalizada com fallback para fontes genéricas */
-    padding: 8px;
-    /* Adiciona 10px de espaçamento interno (padding) ao redor da navbar */
-    display: flex;
-    /* Define o modelo de layout flexível para que os itens da navbar sejam dispostos em linha */
-    justify-content: space-around;
-    /* Distribui os itens da navbar com espaçamento igual entre eles */
-    font-size: 25px;
-    /* Define o tamanho da fonte como 25px */
-    align-items: center;
-    /* Alinha os itens verticalmente no centro da navbar */
-}
-
-/* Estiliza a imagem dentro do logo da navbar */
-.nav-logo img {
-    max-width: 100px;
-    /* Define a largura máxima da imagem como 100px */
-    /* Isso garante que a imagem não ultrapasse 100px de largura, mantendo seu tamanho proporcional */
-}
-
-/* Estiliza a lista dentro dos links de navegação */
-.nav-links ul {
-    list-style-type: none;
-    /* Remove os pontos ou marcadores da lista */
-}
-
-/* Estiliza cada item da lista dentro da navbar */
-.nav-links ul li {
-    display: inline;
-    /* Faz com que os itens da lista fiquem dispostos horizontalmente (em linha) */
-}
-
-/* Estiliza os links dentro da navbar */
-.nav-links ul li a {
-    text-decoration: none;
-    /* Remove o sublinhado dos links */
-    /* Isso garante que os links não tenham a aparência padrão de links sublinhados */
-}
-
 .body-consult {
     font-family: 'Outfit-Bold', sans-serif;
     /* Aplica a fonte personalizada com fallback para fontes genéricas */
@@ -166,32 +124,51 @@ form {
     align-items: center;
 }
 
+fieldset#Nome label {
+    display: block;
+    width: 10%;
+    float: left;
+}
+
 fieldset {
     width: 100%;
     /* Faz o fieldset ocupar toda a largura disponível */
     max-width: 450px;
     /* Define uma largura máxima para melhor visualização */
     border: 2px solid #ccc;
+    /* Adiciona uma borda cinza ao redor do fieldset */
     border-radius: 4px;
+    /* Arredonda as bordas do fieldset */
     padding: 10px 15px;
-    margin-top: 10px;
+    /* Adiciona espaçamento interno ao fieldset */
+    margin: 10px 0;
+    /* Adiciona margem acima e abaixo do fieldset */
     display: flex;
+    /* Usa layout flexível */
     flex-wrap: wrap;
+    /* Permite que os elementos quebrem para a linha de baixo se necessário */
     gap: 10px;
+    /* Adiciona espaçamento entre os elementos internos */
     align-items: center;
+    /* Alinha os itens verticalmente no centro */
     justify-content: flex-start;
     /* Alinha os itens dentro do fieldset */
 }
 
 legend {
     font-size: 18px;
+    /* Define o tamanho da fonte do legend */
     font-weight: bold;
+    /* Deixa o texto do legend em negrito */
     color: #333;
+    /* Define uma cor escura para o texto do legend */
 }
 
 label input[type="checkbox"] {
     margin-right: 5px;
+    /* Adiciona espaço entre a checkbox e o texto da label */
     transform: scale(1.2);
+    /* Aumenta ligeiramente o tamanho da checkbox */
 }
 
 label {
@@ -244,41 +221,6 @@ button {
 button:hover {
     background-color: #05bdfc;
     /* Altera a cor de fundo do botão para um azul mais claro quando o mouse passa por cima */
-}
-
-fieldset {
-    border: 2px solid #ccc;
-    /* Adiciona uma borda cinza ao redor do fieldset */
-    border-radius: 4px;
-    /* Arredonda as bordas do fieldset */
-    padding: 10px 15px;
-    /* Adiciona espaçamento interno ao fieldset */
-    margin: 10px 0;
-    /* Adiciona margem acima e abaixo do fieldset */
-    display: flex;
-    /* Usa layout flexível */
-    flex-wrap: wrap;
-    /* Permite que os elementos quebrem para a linha de baixo se necessário */
-    gap: 10px;
-    /* Adiciona espaçamento entre os elementos internos */
-    align-items: center;
-    /* Alinha os itens verticalmente no centro */
-}
-
-legend {
-    font-size: 18px;
-    /* Define o tamanho da fonte do legend */
-    font-weight: bold;
-    /* Deixa o texto do legend em negrito */
-    color: #333;
-    /* Define uma cor escura para o texto do legend */
-}
-
-label input[type="checkbox"] {
-    margin-right: 5px;
-    /* Adiciona espaço entre a checkbox e o texto da label */
-    transform: scale(1.2);
-    /* Aumenta ligeiramente o tamanho da checkbox */
 }
 
 label {
@@ -350,6 +292,7 @@ label {
             105% bottom;
         height: 100vh;
     }
+
     .navbar {
         flex-direction: column;
         font-size: 20px;
@@ -372,17 +315,8 @@ label {
 }
 
 @media screen and (max-width: 768px) {
-
-    .navbar {
-        font-size: 18px;
-    }
-
-    .nav-logo img {
-        max-width: 80px;
-    }
-
     .body-consult .logo {
-        max-width: 300px;
+        max-width: 180px;
     }
 
     .body-consult-itens {
@@ -395,8 +329,12 @@ label {
     }
 
     label {
-        text-align: left;
+        text-align: center;
         width: 100%;
+    }
+
+    fieldset {
+        display: inline-flex;
     }
 
     input,
@@ -411,15 +349,6 @@ label {
 }
 
 @media screen and (max-width: 480px) {
-    .navbar {
-        font-size: 16px;
-        padding: 5px;
-    }
-
-    .nav-logo img {
-        max-width: 60px;
-    }
-
     .body-consult-itens {
         padding: 10px;
     }

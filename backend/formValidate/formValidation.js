@@ -24,14 +24,22 @@ document.getElementById("coverage-form").addEventListener("submit", async functi
     loadingDiv.style.display = "block";
 
     try {
-        const providers = await fetchCoverageData(zipcode, number);
+        const { address, providers } = await fetchCoverageData(zipcode, number);
         resultDiv.style.display = "block";
 
-        if (typeof providers === "string") {
-            resultDiv.innerHTML = `<p style="color: red;">${providers}</p>`;
+        // Sempre exibir o endereço
+        let htmlContent = `
+            <p style='font-size: 15px; margin-bottom: 10px;'><strong>Endereço:</strong> ${address.street}, ${address.neighborhood}, ${address.city} - ${address.state}</p>
+        `;
+
+        // Exibir provedores ou "Sem Viabilidade"
+        if (providers.length > 0) {
+            htmlContent += `<p>Provedores disponíveis: <strong>${providers.join(", ")}</strong></p>`;
         } else {
-            resultDiv.innerHTML = `<p>Provedores disponíveis: <strong>${providers.join(", ")}</strong></p>`;
+            htmlContent += `<p style="color: red;">Sem Viabilidade.</p>`;
         }
+
+        resultDiv.innerHTML = htmlContent;
     } catch (error) {
         resultDiv.innerHTML = "<p style='color: red;'>Erro ao buscar os dados de cobertura.</p>";
     } finally {
