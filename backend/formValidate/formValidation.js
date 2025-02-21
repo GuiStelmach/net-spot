@@ -21,7 +21,7 @@ document.getElementById("coverage-form").addEventListener("submit", async functi
 
     // Exibir "Carregando..."
     resultDiv.innerHTML = "";
-    loadingDiv.style.display = "block";
+    loadingDiv.style.visibility = "visible";
 
     try {
         const { address, providers } = await fetchCoverageData(zipcode, number);
@@ -44,6 +44,6 @@ document.getElementById("coverage-form").addEventListener("submit", async functi
         resultDiv.innerHTML = "<p style='color: red;'>Erro ao buscar os dados de cobertura.</p>";
     } finally {
         // Ocultar "Carregando..." independentemente do resultado
-        loadingDiv.style.display = "none";
+        loadingDiv.style.visibility = "hidden";
     }
 });

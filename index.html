@@ -10,16 +10,6 @@
 </head>
 
 <body>
-    <!-- <div class="navbar">
-        <div class="nav-logo">
-            <img src="/frontend/assets/images/net-spot-lite.png" alt="Logo do Net Spot">
-        </div>
-        <nav class="nav-links">
-            <ul>
-                <li><a href="#">Sobre</a></li>
-            </ul>
-        </nav>
-    </div> -->
     <div class="body-consult">
         <div class="logo">
             <img src="./frontend/assets/images/net-spot-lite.png" alt="Logo do Net Spot">
@@ -50,17 +40,16 @@
         </div>
     </div>
     <div class="response-container">
-        <div id="loading" style="display: none;">🔄 Carregando...</div>
+        <div id="loading" style="visibility: hidden;" class="loading">
+            <div class="spinner"></div>
+            <span>Carregando...</span>
+        </div>
         <div id="result" style="display: none;"></div>
-        <!-- <div class="response-coverage">
-            <div class="img-provider">
-                <img src="" alt="Logo do Provedor">
-            </div>
-            <div class="check-coverage">
-                <span>Viabilidade Confirmada!</span>
-                <img src="" alt="Icone Check OK">
-            </div>
-        </div> -->
+    </div>
+    <div class="notification">
+        <div class="alert-box">
+            
+        </div>
     </div>
     <div class="footer">
         <p>Desenvolvido por <a href="http://github.com/GuiStelmach">@GuiStelmach</a></p>
