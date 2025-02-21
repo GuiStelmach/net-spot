@@ -2,9 +2,9 @@
 @font-face {
     font-family: 'Outfit-Regular';
     /* Nome para a fonte regular */
-    src: url('../frontend/assets/fonts/Outfit-Regular.woff2') format('woff2'),
-        url('../frontend/assets/fonts/Outfit-Regular.woff') format('woff'),
-        url('../frontend/assets/fonts/Outfit-Regular.ttf') format('truetype');
+    src: url('../assets/fonts/Outfit-Regular.woff2') format('woff2'),
+        url('../assets/fonts/Outfit-Regular.woff') format('woff'),
+        url('../assets/fonts/Outfit-Regular.ttf') format('truetype');
     font-weight: normal;
     /* Peso normal */
     font-style: normal;
@@ -14,9 +14,9 @@
 @font-face {
     font-family: 'Outfit-Bold';
     /* Nome para a fonte bold */
-    src: url('../frontend/assets/fonts/Outfit-Bold.woff2') format('woff2'),
-        url('../frontend/assets/fonts/Outfit-Bold.woff') format('woff'),
-        url('../frontend/assets/fonts/Outfit-Bold.ttf') format('truetype');
+    src: url('../assets/fonts/Outfit-Bold.woff2') format('woff2'),
+        url('../assets/fonts/Outfit-Bold.woff') format('woff'),
+        url('../assets/fonts/Outfit-Bold.ttf') format('truetype');
     font-weight: bold;
     /* Peso bold */
     font-style: normal;
@@ -296,6 +296,54 @@ label {
     width: 100%;
     max-width: 500px;
 }
+.notification {
+    position: fixed;
+    bottom: 20px;  /* Ajuste para o fundo da tela */
+    left: 20px;    /* Ajuste para a lateral esquerda */
+    z-index: 1000;
+}
+
+.alert-box {
+    display: none; /* Inicialmente oculto */
+    background-color: #f44336; /* Cor de alerta (vermelho) */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 300px;
+    opacity: 0;
+    transition: opacity 0.3s ease, display 0s ease 0.3s; /* Suaviza a transição de visibilidade */
+}
+
+.alert-box.show {
+    display: flex; /* Flexbox para alinhamento */
+    opacity: 1; /* Torna o alerta visível */
+}
+
+.alert-box i {
+    margin-right: 10px; /* Espaço entre o ícone e a mensagem */
+}
+
+.alert-box.success {
+    background-color: #4CAF50; /* Cor de sucesso (verde) */
+}
+
+.alert-box.info {
+    background-color: #2196F3; /* Cor de informação (azul) */
+}
+
+.alert-box.warning {
+    background-color: #ff9800; /* Cor de aviso (laranja) */
+}
+
+.alert-box.error {
+    background-color: #f44336; /* Cor de erro (vermelho) */
+}
 
 .footer {
     position: fixed;
@@ -309,7 +357,6 @@ label {
     padding: 10px 0;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
-
 /* Responsividade para telas menores */
 @media screen and (max-width: 1024px) {
     body {

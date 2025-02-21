@@ -17,9 +17,9 @@ O objetivo do Net Spot Lite é unificar as consultas de cobertura, eliminando a 
 ## Tecnologias Utilizadas
 
 - **Frontend:**
-  - ReactJS
+  - HTML5
+  - CSS3
   - JavaScript
-  - HTML5 e CSS3
 
 - **APIs:**
   - Integração com a API do [melhorplano.net](https://melhorplano.net/) para consulta de cobertura.
@@ -32,8 +32,13 @@ O objetivo do Net Spot Lite é unificar as consultas de cobertura, eliminando a 
 ## Como Funciona
 
 1. O vendedor informa o CEP e o número do endereço desejado.
+2. O vendedor pode escolher algumas operadoras que deseja consultar (ou desmarcar todas).
 2. O Net Spot Lite realiza requisições a APIs do [melhorplano.net](https://melhorplano.net/) e retorna apenas a resposta das operadoras configuradas no projeto.
 3. Os resultados das consultas são exibidos de forma consolidada, mostrando a disponibilidade de cada operadora no local solicitado.
+
+## Melhorias Futuras
+
+Periodicamente o projeto recebe atualizações e melhorias.
 
 ## Licença
 
