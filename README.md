@@ -33,6 +33,9 @@ Unificar e simplificar o processo de consulta de cobertura de internet fibra, re
 - ✅ **Sem Banco de Dados** - Arquitetura simples e escalável
 - ✅ **API Integration** - Integração com APIs confiáveis do MelhorPlano
 
+- ✅ **Consulta Massiva (Extração em massa)** - Processamento em lote via upload de arquivos CSV/TXT para executar consultas sequenciais.
+- ✅ **Export de Resultados (CSV/JSON)** - Exportação dos resultados processados nos formatos CSV e JSON (download disponível após processamento).
+
 ---
 
 ## 🛠️ Stack Tecnológico
@@ -92,8 +95,8 @@ net-spot/
 │   ├── assets/
 │   │   ├── fonts/          # Fontes customizadas (Outfit)
 │   │   └── images/         # Logos e assets visuais
-│   ├── pages/
-│   │   └── index.html      # Página alternativa
+│   ├── pages/              # (geralmente não utilizada)
+│   │   └── index.html      # Página alternativa (removida)
 │   └── style/
 │       └── index.css       # Estilos globais e dark mode
 ├── backend/
@@ -161,13 +164,14 @@ GET /api/v1/postcodes/coverage?postcode={CEP}&number={NUMBER}&c={PROVIDERS}
 - ✨ Correção de overflow e scroll issues
 - ✨ Estilização completa para ambos os temas
 - ✨ Melhorias na legibilidade de elementos
+ - ✨ Implementação de Consulta Massiva e Export de Resultados (CSV/JSON) — veja o guia de extração em massa em [EXTRAÇÃO_EM_MASSA.md](EXTRAÇÃO_EM_MASSA.md)
 
 ---
 
 ## 🔮 Roadmap Futuro
 
-- [ ] Consulta massiva (scrap)
-- [ ] Export de resultados (CSV)
+- ✅ Consulta massiva (scrap) — Implementado (veja [EXTRAÇÃO_EM_MASSA.md](EXTRAÇÃO_EM_MASSA.md))
+- ✅ Export de resultados (CSV) — Implementado (CSV/JSON)
 
 ---
 

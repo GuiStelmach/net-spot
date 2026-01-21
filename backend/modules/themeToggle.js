@@ -39,8 +39,3 @@ const themeToggle = {
         }
     }
 };
-
-// Inicializar quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', () => {
-    themeToggle.init();
-});

@@ -20,8 +20,14 @@
         <div class="logo">
             <img src="./frontend/assets/images/net-spot-lite.png" alt="Logo do Net Spot">
         </div>
+
+        <div class="form-tabs">
+            <button class="tab-btn active" data-tab="simple">Consulta Simples</button>
+            <button class="tab-btn" data-tab="bulk">Extração em Massa</button>
+        </div>
+
         <div class="body-consult-itens">
-            <form id="coverage-form">
+            <form id="coverage-form" class="tab-content active">
                 <div class="form-group" id="form-group">
                     <label for="cep">CEP:</label>
                     <input type="text" id="zipcode" name="cep" placeholder="Digite o CEP" required>
@@ -32,9 +38,9 @@
 
                 <fieldset>
                     <legend>Operadoras:</legend>
-                    <label><input type="checkbox" id="tim" name="tim" checked> TIM</label>
-                    <label><input type="checkbox" id="sky" name="sky" checked> SKY</label>
-                    <label><input type="checkbox" id="unifique" name="unifique" checked> Unifique</label>
+                    <label><input type="checkbox" id="tim" name="tim"> TIM</label>
+                    <label><input type="checkbox" id="sky" name="sky"> SKY</label>
+                    <label><input type="checkbox" id="unifique" name="unifique"> Unifique</label>
                     <label><input type="checkbox" id="claro" name="claro"> Claro</label>
                     <label><input type="checkbox" id="vero-internet" name="vero-internet"> Vero</label>
                     <label><input type="checkbox" id="oi" name="oi"> Oi</label>
@@ -43,12 +49,69 @@
                 <button type="submit">Consultar</button>
             </form>
 
+            <div id="bulk-form" class="tab-content" style="display: none;">
+                <div class="bulk-container">
+                    <div class="bulk-header">
+                        <h2>Extração em Massa</h2>
+                        <p>Faça consultas de múltiplos endereços de uma vez</p>
+                    </div>
+
+                    <div class="bulk-upload" id="bulk-upload">
+                        <div class="upload-area" id="upload-area">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Clique ou arraste um arquivo CSV aqui</p>
+                            <small>Formato: cep,num (uma linha por consulta)</small>
+                        </div>
+                        <input type="file" id="csv-file" accept=".csv" hidden>
+                        
+                        <!-- Resultados aparecem aqui após processamento -->
+                        <div id="bulk-results" style="display: none;">
+                            <div class="results-header">
+                                <h3>Resultados</h3>
+                                <div class="results-actions">
+                                    <button id="btn-download-csv" class="btn-small">
+                                        <i class="fas fa-download"></i> CSV
+                                    </button>
+                                    <button id="btn-download-json" class="btn-small">
+                                        <i class="fas fa-download"></i> JSON
+                                    </button>
+                                    <button id="btn-new-process" class="btn-small">
+                                        <i class="fas fa-plus"></i> Novo
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="results-summary">
+                                <p>Processadas: <strong id="summary-processed">0</strong> consultas</p>
+                                <p>Com cobertura: <strong id="summary-with-coverage">0</strong></p>
+                                <p>Sem cobertura: <strong id="summary-without-coverage">0</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bulk-options">
+                        <fieldset>
+                            <legend>Operadoras:</legend>
+                            <label><input type="checkbox" class="bulk-provider-checkbox" name="tim"> TIM</label>
+                            <label><input type="checkbox" class="bulk-provider-checkbox" name="sky"> SKY</label>
+                            <label><input type="checkbox" class="bulk-provider-checkbox" name="unifique"> Unifique</label>
+                            <label><input type="checkbox" class="bulk-provider-checkbox" name="claro"> Claro</label>
+                            <label><input type="checkbox" class="bulk-provider-checkbox" name="vero-internet"> Vero</label>
+                            <label><input type="checkbox" class="bulk-provider-checkbox" name="oi"> Oi</label>
+                        </fieldset>
+                    </div>
+
+                    <div class="bulk-actions">
+                        <button id="btn-process" class="btn-primary" disabled>Processar Arquivo</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="response-container">
         <div id="loading" style="visibility: hidden;" class="loading">
             <div class="spinner"></div>
-            <span>Carregando...</span>
+            <span id="loading-text">Carregando...</span>
         </div>
         <div id="result" style="display: none;"></div>
     </div>
@@ -58,10 +121,13 @@
         <p>Desenvolvido por <a href="http://github.com/GuiStelmach">@GuiStelmach</a></p>
     </div>
     <script src="./backend/api/provider.js"></script>
-    <script src="backend/formValidate/validateZipcode.js"></script>
-    <script src="backend/formValidate/validateNumber.js"></script>
-    <script src="backend/formValidate/themeToggle.js"></script>
-    <script src="backend/formValidate/formValidation.js"></script>
+    <script src="backend/utils/validateZipcode.js"></script>
+    <script src="backend/utils/validateNumber.js"></script>
+    <script src="backend/modules/themeToggle.js"></script>
+    <script src="backend/modules/bulkProcessor.js"></script>
+    <script src="backend/modules/formValidation.js"></script>
+    <script src="backend/modules/tabsManager.js"></script>
+    <script src="backend/modules/init.js"></script>
 
 </body>
 
