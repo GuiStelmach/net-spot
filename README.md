@@ -32,9 +32,10 @@ Unificar e simplificar o processo de consulta de cobertura de internet fibra, re
 - ✅ **Dark Mode** - Tema claro e escuro com persistência de preferência
 - ✅ **Sem Banco de Dados** - Arquitetura simples e escalável
 - ✅ **API Integration** - Integração com APIs confiáveis do MelhorPlano
-
 - ✅ **Consulta Massiva (Extração em massa)** - Processamento em lote via upload de arquivos CSV/TXT para executar consultas sequenciais.
-- ✅ **Export de Resultados (CSV/JSON)** - Exportação dos resultados processados nos formatos CSV e JSON (download disponível após processamento).
+- ✅ **Export de Resultados (CSV/JSON)** - Exportação dos resultados processados nos formatos CSV e JSON.
+
+> Para detalhes completos sobre a funcionalidade de Extração em Massa, consulte o guia [EXTRAÇÃO_EM_MASSA.md](EXTRAÇÃO_EM_MASSA.md).
 
 ---
 
@@ -43,11 +44,12 @@ Unificar e simplificar o processo de consulta de cobertura de internet fibra, re
 ### Frontend
 - **HTML5** - Estrutura semântica
 - **CSS3** - Estilização avançada com variáveis e animações
-- **JavaScript (ES6+)** - Lógica de aplicação
+- **JavaScript (ES6+)** - Lógica de aplicação modularizada
 - **Font Awesome 6** - Ícones vetoriais
 
-### Backend
-- **JavaScript (Node.js)** - Manipulação de APIs
+### Backend (Client-side Logic)
+- **JavaScript (Modules)** - Organização em módulos ES6 para manutenibilidade
+- **Fetch API** - Comunicação assíncrona com serviços externos
 
 ### Integrações
 - **MelhorPlano API** - Consulta de cobertura de internet
@@ -64,26 +66,23 @@ Unificar e simplificar o processo de consulta de cobertura de internet fibra, re
    cd net-spot
    ```
 
-2. **Abra no navegador**
-   ```bash
-   # Abra o arquivo index.html no seu navegador favorito
-   # Ou use um servidor local (recomendado)
-   ```
+2. **Executar a aplicação**
+   Como é uma aplicação estática (HTML/CSS/JS), você pode:
+   - Abrir o arquivo `index.html` diretamente no seu navegador.
+   - Ou usar uma extensão como "Live Server" no VSCode (recomendado para evitar problemas de CORS em alguns navegadores).
 
 ### Fluxo de Uso
 
-1. **Preenchimento de Dados**
+1. **Consulta Simples**
    - Insira o CEP do endereço (8 dígitos)
    - Insira o número do endereço
-   - Selecione as operadoras desejadas (ou desmarque todas para busca mais ampla)
-
-2. **Execução da Consulta**
+   - Selecione as operadoras desejadas
    - Clique em "Consultar"
-   - Aguarde o processamento (máx. 20 segundos)
 
-3. **Análise de Resultados**
-   - Visualize quais operadoras têm cobertura disponível
-   - Informações consolidadas com endereço completo
+2. **Extração em Massa**
+   - Acesse a aba "Extração em Massa"
+   - Faça upload de um arquivo CSV/TXT com CEPs e números
+   - Processe a lista e exporte os resultados
 
 ---
 
@@ -95,22 +94,26 @@ net-spot/
 │   ├── assets/
 │   │   ├── fonts/          # Fontes customizadas (Outfit)
 │   │   └── images/         # Logos e assets visuais
-│   ├── pages/              # (geralmente não utilizada)
-│   │   └── index.html      # Página alternativa (removida)
+│   ├── pages/              # Páginas auxiliares
 │   └── style/
 │       └── index.css       # Estilos globais e dark mode
 ├── backend/
 │   ├── api/
 │   │   ├── api.js          # Integração com MelhorPlano API
 │   │   └── provider.js     # Processamento de provedores
-│   └── formValidate/
-│       ├── formValidation.js      # Validação e submissão
-│       ├── validateZipcode.js     # Validação de CEP
-│       ├── validateNumber.js      # Validação de número
-│       └── themeToggle.js         # Sistema de dark mode
-├── index.html              # Página principal
+│   ├── modules/
+│   │   ├── bulkProcessor.js # Lógica de processamento em massa
+│   │   ├── formValidation.js # Validação e submissão de formulários
+│   │   ├── init.js         # Inicialização da aplicação
+│   │   ├── tabsManager.js  # Gerenciamento de abas (Simples/Massa)
+│   │   └── themeToggle.js  # Sistema de dark mode
+│   └── utils/
+│       ├── validateNumber.js # Utilitário de validação de número
+│       └── validateZipcode.js # Utilitário de validação de CEP
+├── index.html              # Página principal da aplicação
 ├── package.json            # Metadados do projeto
-└── README.md              # Este arquivo
+├── EXTRAÇÃO_EM_MASSA.md    # Documentação da funcionalidade de extração
+└── README.md               # Este arquivo
 ```
 
 ---
@@ -121,12 +124,10 @@ net-spot/
 - **Toggle Visual** - Botão fixo no canto superior esquerdo
 - **Persistência** - Preferência salva no localStorage
 - **Respeita Sistema** - Detecta preferência do SO do usuário
-- **Transições Suaves** - Animações de 0.3s entre temas
 
 ### Sistema de Notificações
 - **Fila Inteligente** - Múltiplos alertas empilhados
-- **Timeouts Independentes** - Cada alerta com duração própria (5s)
-- **Animações** - Slide-in/slide-out com easing
+- **Timeouts Independentes** - Cada alerta com duração própria
 - **Tipos Variados** - Success, Info, Warning e Error
 
 ### Validações
@@ -139,39 +140,15 @@ net-spot/
 ## 🔌 APIs Utilizadas
 
 ### MelhorPlano Coverage API
-```
-GET /api/v1/postcodes/coverage?postcode={CEP}&number={NUMBER}&c={PROVIDERS}
-```
-
-**Operadoras Suportadas:**
-- A API pode retornar cobertura de diversas operadoras, incluindo provedores locais menores (apenas desmarcando as opções de operadoras na consulta).
+A aplicação consome a API pública de cobertura do MelhorPlano para verificar a disponibilidade de serviços em endereços específicos.
 
 ---
 
 ## 🌐 Performance e Acessibilidade
 
 - ✅ **Responsivo** - Funciona em desktop, tablet e mobile
-- ✅ **Otimizado** - Sem dependências externas desnecessárias
-- ✅ **Acessível** - Semântica HTML correta e bom contraste
-- ✅ **Rápido** - Tempo máximo de resposta: 20 segundos
-
----
-
-## 📝 Melhorias Recentes
-
-- ✨ Implementação de Dark Mode com toggle persistente
-- ✨ Sistema de notificações com fila inteligente
-- ✨ Correção de overflow e scroll issues
-- ✨ Estilização completa para ambos os temas
-- ✨ Melhorias na legibilidade de elementos
- - ✨ Implementação de Consulta Massiva e Export de Resultados (CSV/JSON) — veja o guia de extração em massa em [EXTRAÇÃO_EM_MASSA.md](EXTRAÇÃO_EM_MASSA.md)
-
----
-
-## 🔮 Roadmap Futuro
-
-- ✅ Consulta massiva (scrap) — Implementado (veja [EXTRAÇÃO_EM_MASSA.md](EXTRAÇÃO_EM_MASSA.md))
-- ✅ Export de resultados (CSV) — Implementado (CSV/JSON)
+- ✅ **Modular** - Código organizado em módulos ES6 para melhor manutenção
+- ✅ **Rápido** - Processamento assíncrono otimizado
 
 ---
 
@@ -185,7 +162,6 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 
 **Guilherme Stelmach**
 - GitHub: [@GuiStelmach](https://github.com/GuiStelmach)
-- Email: Contate através do GitHub
 
 ---
 
