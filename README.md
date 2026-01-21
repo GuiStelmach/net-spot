@@ -1,49 +1,202 @@
-<p align="center">
-  <img alt="Net Spot Lite" src="frontend/assets/images/net-spot-lite.png" width="300px" />
-</p>
+<div align="center">
+  <img alt="Net Spot" src="frontend/assets/images/net-spot-lite.png" width="280px" />
+  
+  
 
-**Net Spot Lite** é uma aplicação web desenvolvida para agilizar o processo de consulta de viabilidade de internet fibra de diversas operadoras. O sistema é destinado exclusivamente ao uso interno por equipes de vendas de uma empresa credenciada para comercializar serviços de internet de diferentes operadoras.
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-brightgreen.svg)](#)
+  [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](#)
+  
+  **Plataforma de consulta unificada de cobertura de internet fibra**
+  
+</div>
 
-## Objetivo
+---
 
-O objetivo do Net Spot Lite é unificar as consultas de cobertura, eliminando a necessidade de acessar o sistema de cada operadora separadamente. Isso reduz o tempo gasto em cada consulta e aumenta a eficiência do processo de vendas.
+## 📋 Sobre o Projeto
 
-## Funcionalidades Lite
+**Net Spot** é uma aplicação web moderna e responsiva desenvolvida para otimizar consultas de viabilidade de internet fibra em múltiplas operadoras brasileiras. A plataforma foi construída com foco em eficiência operacional, permitindo que equipes de vendas realizem consultas consolidadas sem necessidade de acessar sistemas de cada operadora separadamente.
 
-- **Consulta Unificada:** Permite a busca por cobertura de internet fibra em múltiplas operadoras simultaneamente, utilizando CEP e número da residência/comércio.
-- **Integração com APIs:** Consome a API do [melhorplano.net](https://melhorplano.net/) para obter a viabilidade de cada operadora.
-- **Interface Simples e Intuitiva:** Desenvolvida para ser usada no navegador, otimizando a experiência da equipe de vendas.
+### 🎯 Objetivo Principal
 
-## Tecnologias Utilizadas
+Unificar e simplificar o processo de consulta de cobertura de internet fibra, reduzindo drasticamente o tempo despendido em cada pesquisa e aumentando a produtividade das equipes comerciais.
 
-- **Frontend:**
-  - HTML5
-  - CSS3
-  - JavaScript
+---
 
-- **APIs:**
-  - Integração com a API do [melhorplano.net](https://melhorplano.net/) para consulta de cobertura.
+## ✨ Funcionalidades
 
-## Arquitetura
+- ✅ **Consulta Unificada** - Busca simultânea em múltiplas operadoras
+- ✅ **Validação em Tempo Real** - Validação de CEP e número do endereço
+- ✅ **Interface Intuitiva** - Design responsivo e acessível
+- ✅ **Sistema de Notificações** - Alertas visuais com fila de notificações
+- ✅ **Dark Mode** - Tema claro e escuro com persistência de preferência
+- ✅ **Sem Banco de Dados** - Arquitetura simples e escalável
+- ✅ **API Integration** - Integração com APIs confiáveis do MelhorPlano
 
-- **Web-Based:** O aplicativo será acessado diretamente pelo navegador, sem necessidade de instalação.
-- **Sem Banco de Dados:** Todas as consultas são realizadas diretamente na API, sem armazenamento local ou remoto.
+---
 
-## Como Funciona
+## 🛠️ Stack Tecnológico
 
-1. O vendedor informa o CEP e o número do endereço desejado.
-2. O vendedor pode escolher algumas operadoras que deseja consultar (ou desmarcar todas).
-2. O Net Spot Lite realiza requisições a APIs do [melhorplano.net](https://melhorplano.net/) e retorna apenas a resposta das operadoras configuradas no projeto.
-3. Os resultados das consultas são exibidos de forma consolidada, mostrando a disponibilidade de cada operadora no local solicitado.
+### Frontend
+- **HTML5** - Estrutura semântica
+- **CSS3** - Estilização avançada com variáveis e animações
+- **JavaScript (ES6+)** - Lógica de aplicação
+- **Font Awesome 6** - Ícones vetoriais
 
-## Melhorias Futuras
+### Backend
+- **JavaScript (Node.js)** - Manipulação de APIs
 
-Periodicamente o projeto recebe atualizações e melhorias.
+### Integrações
+- **MelhorPlano API** - Consulta de cobertura de internet
 
-## Licença
+---
 
-Esse projeto está sob a licença MIT.
+## 🚀 Como Usar
 
-## Contato
+### Instalação
 
-Para dúvidas ou suporte, entre em contato com [GuiStelmach](https://github.com/GuiStelmach).
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/GuiStelmach/net-spot.git
+   cd net-spot
+   ```
+
+2. **Abra no navegador**
+   ```bash
+   # Abra o arquivo index.html no seu navegador favorito
+   # Ou use um servidor local (recomendado)
+   ```
+
+### Fluxo de Uso
+
+1. **Preenchimento de Dados**
+   - Insira o CEP do endereço (8 dígitos)
+   - Insira o número do endereço
+   - Selecione as operadoras desejadas (ou desmarque todas para busca mais ampla)
+
+2. **Execução da Consulta**
+   - Clique em "Consultar"
+   - Aguarde o processamento (máx. 20 segundos)
+
+3. **Análise de Resultados**
+   - Visualize quais operadoras têm cobertura disponível
+   - Informações consolidadas com endereço completo
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+net-spot/
+├── frontend/
+│   ├── assets/
+│   │   ├── fonts/          # Fontes customizadas (Outfit)
+│   │   └── images/         # Logos e assets visuais
+│   ├── pages/
+│   │   └── index.html      # Página alternativa
+│   └── style/
+│       └── index.css       # Estilos globais e dark mode
+├── backend/
+│   ├── api/
+│   │   ├── api.js          # Integração com MelhorPlano API
+│   │   └── provider.js     # Processamento de provedores
+│   └── formValidate/
+│       ├── formValidation.js      # Validação e submissão
+│       ├── validateZipcode.js     # Validação de CEP
+│       ├── validateNumber.js      # Validação de número
+│       └── themeToggle.js         # Sistema de dark mode
+├── index.html              # Página principal
+├── package.json            # Metadados do projeto
+└── README.md              # Este arquivo
+```
+
+---
+
+## 🎨 Recursos Avançados
+
+### Dark Mode
+- **Toggle Visual** - Botão fixo no canto superior esquerdo
+- **Persistência** - Preferência salva no localStorage
+- **Respeita Sistema** - Detecta preferência do SO do usuário
+- **Transições Suaves** - Animações de 0.3s entre temas
+
+### Sistema de Notificações
+- **Fila Inteligente** - Múltiplos alertas empilhados
+- **Timeouts Independentes** - Cada alerta com duração própria (5s)
+- **Animações** - Slide-in/slide-out com easing
+- **Tipos Variados** - Success, Info, Warning e Error
+
+### Validações
+- ✓ CEP apenas numérico (máx. 8 dígitos)
+- ✓ Número apenas numérico
+- ✓ Feedback em tempo real ao usuário
+
+---
+
+## 🔌 APIs Utilizadas
+
+### MelhorPlano Coverage API
+```
+GET /api/v1/postcodes/coverage?postcode={CEP}&number={NUMBER}&c={PROVIDERS}
+```
+
+**Operadoras Suportadas:**
+- A API pode retornar cobertura de diversas operadoras, incluindo provedores locais menores (apenas desmarcando as opções de operadoras na consulta).
+
+---
+
+## 🌐 Performance e Acessibilidade
+
+- ✅ **Responsivo** - Funciona em desktop, tablet e mobile
+- ✅ **Otimizado** - Sem dependências externas desnecessárias
+- ✅ **Acessível** - Semântica HTML correta e bom contraste
+- ✅ **Rápido** - Tempo máximo de resposta: 20 segundos
+
+---
+
+## 📝 Melhorias Recentes
+
+- ✨ Implementação de Dark Mode com toggle persistente
+- ✨ Sistema de notificações com fila inteligente
+- ✨ Correção de overflow e scroll issues
+- ✨ Estilização completa para ambos os temas
+- ✨ Melhorias na legibilidade de elementos
+
+---
+
+## 🔮 Roadmap Futuro
+
+- [ ] Consulta massiva (scrap)
+- [ ] Export de resultados (CSV)
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 👤 Autor
+
+**Guilherme Stelmach**
+- GitHub: [@GuiStelmach](https://github.com/GuiStelmach)
+- Email: Contate através do GitHub
+
+---
+
+## 🤝 Suporte
+
+Encontrou um bug ou tem uma sugestão? 
+- 📧 Abra uma [issue](https://github.com/GuiStelmach/net-spot/issues)
+- 🔗 Faça um fork e envie um pull request
+
+---
+
+<div align="center">
+  
+  **Desenvolvido por [GuiStelmach](https://github.com/GuiStelmach)**
+  
+  *"Simplificando a venda de internet fibra no Brasil"*
+  
+</div>
