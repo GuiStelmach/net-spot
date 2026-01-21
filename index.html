@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <!-- Toggle Dark Mode -->
+    <button id="theme-toggle" class="theme-toggle" title="Alternar modo escuro">
+        <i class="fas fa-moon"></i>
+    </button>
+    
     <div class="body-consult">
         <div class="logo">
             <img src="./frontend/assets/images/net-spot-lite.png" alt="Logo do Net Spot">
@@ -48,10 +53,6 @@
         <div id="result" style="display: none;"></div>
     </div>
     <div class="notification">
-        <div id="alert-box" class="alert-box">
-            <i></i> <!-- Ícone do alerta -->
-            <span id="alert-message"></span> <!-- Mensagem do alerta -->
-        </div>
     </div>    
     <div class="footer">
         <p>Desenvolvido por <a href="http://github.com/GuiStelmach">@GuiStelmach</a></p>
@@ -59,6 +60,7 @@
     <script src="./backend/api/provider.js"></script>
     <script src="backend/formValidate/validateZipcode.js"></script>
     <script src="backend/formValidate/validateNumber.js"></script>
+    <script src="backend/formValidate/themeToggle.js"></script>
     <script src="backend/formValidate/formValidation.js"></script>
 
 </body>

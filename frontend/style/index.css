@@ -29,11 +29,15 @@
     padding: 0;
     /* Remove o padding padrão de todos os elementos */
 
-    --text-ligth-mode: #000;
-    --bg-ligth-mode: #f4f4f4;
+    --text-light-mode: #000;
+    --bg-light-mode: #f4f4f4;
     --text-dark-mode: #f4f4f4;
-    --bg-dark-mode: #142136;
-
+    --bg-dark-mode: #1a1a1a;
+    
+    /* Variáveis ativas (modo light por padrão) */
+    --text-color: var(--text-light-mode);
+    --bg-color: var(--bg-light-mode);
+    --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -50,8 +54,60 @@ body {
     /* Terceira listra no canto esquerdo inferior */
     background-size: 45vh;
     background-color: #f4f4f4;
-    /* Define uma cor de fundo clara */
-    height: 100vh;
+    color: #000;
+    min-height: 100vh;
+    /* Usa min-height em vez de height para permitir crescimento */
+    display: flex;
+    flex-direction: column;
+    /* Prepara para layout com footer fixo */
+    padding-bottom: 80px;
+    /* Espaço para o footer fixo não sobrepor conteúdo */
+    overflow: hidden;
+    /* Ignora tudo que ultrapassa a viewport, evitando scroll */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Suaviza a transição entre temas */
+}
+
+/* Modo Dark */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #f4f4f4;
+}
+
+/* Botão de alternância de tema */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(58, 108, 247, 0.9);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:hover {
+    background-color: rgba(58, 108, 247, 1);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .theme-toggle {
+    background-color: rgba(255, 193, 7, 0.9);
+    color: #1a1a1a;
+}
+
+body.dark-mode .theme-toggle:hover {
+    background-color: rgba(255, 193, 7, 1);
 }
 
 .body-consult {
@@ -65,8 +121,6 @@ body {
     /* Centraliza os itens horizontalmente */
     justify-content: flex-start;
     /* Alinha os itens ao topo da tela */
-    height: 50vh;
-    /* Faz o contêiner ocupar toda a altura da tela (viewport) */
     padding-top: 20px;
     /* Adiciona um pequeno espaço entre o topo da tela e o conteúdo */
 }
@@ -101,6 +155,13 @@ body {
     /* Faz o formulário ocupar toda a largura disponível */
     max-width: 700px;
     /* Limita a largura máxima do formulário a 700px */
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .body-consult-itens {
+    background-color: #2a2a2a;
+    color: #f4f4f4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 form {
@@ -153,6 +214,11 @@ fieldset {
     /* Alinha os itens verticalmente no centro */
     justify-content: flex-start;
     /* Alinha os itens dentro do fieldset */
+    transition: border-color 0.3s ease;
+}
+
+body.dark-mode fieldset {
+    border-color: #555;
 }
 
 legend {
@@ -162,6 +228,11 @@ legend {
     /* Deixa o texto do legend em negrito */
     color: #333;
     /* Define uma cor escura para o texto do legend */
+    transition: color 0.3s ease;
+}
+
+body.dark-mode legend {
+    color: #f4f4f4;
 }
 
 label input[type="checkbox"] {
@@ -197,6 +268,13 @@ input {
     /* Limita a largura máxima dos inputs a 300px */
     margin: 0;
     /* Remove a margem automática nos inputs */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode input {
+    background-color: #3a3a3a;
+    color: #f4f4f4;
+    border-color: #555;
 }
 
 button {
@@ -288,6 +366,13 @@ label {
     margin-top: 35px;
     font-size: 20px;
     font-family: 'Outfit-Bold', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode #result {
+    background-color: #2a2a2a;
+    color: #f4f4f4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333;
@@ -301,10 +386,13 @@ label {
     bottom: 20px;  /* Ajuste para o fundo da tela */
     left: 20px;    /* Ajuste para a lateral esquerda */
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Espaçamento entre alertas empilhados */
 }
 
 .alert-box {
-    display: none; /* Inicialmente oculto */
     background-color: #f44336; /* Cor de alerta (vermelho) */
     color: white;
     padding: 15px;
@@ -314,19 +402,22 @@ label {
     font-size: 16px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
     width: 300px;
-    opacity: 0;
-    transition: opacity 0.3s ease, display 0s ease 0.3s; /* Suaviza a transição de visibilidade */
-}
-
-.alert-box.show {
-    display: flex; /* Flexbox para alinhamento */
-    opacity: 1; /* Torna o alerta visível */
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    min-height: 50px;
 }
 
 .alert-box i {
-    margin-right: 10px; /* Espaço entre o ícone e a mensagem */
+    flex-shrink: 0;
+    /* Impede que o ícone encolha */
+    font-size: 18px;
+}
+
+.alert-box span {
+    flex: 1;
+    /* Faz a mensagem ocupar espaço disponível */
 }
 
 .alert-box.success {
@@ -345,6 +436,28 @@ label {
     background-color: #f44336; /* Cor de erro (vermelho) */
 }
 
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -356,6 +469,40 @@ label {
     font-size: 14px;
     padding: 10px 0;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    /* Fundo completamente transparente */
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+    /* Sombra branca no texto para melhorar legibilidade */
+    color: #333;
+    z-index: 10;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+body.dark-mode .footer {
+    color: #f4f4f4;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+    /* Sombra escura para melhorar legibilidade em dark mode */
+}
+
+.footer a {
+    color: #2563eb;
+    /* Azul mais forte para leitura confortável em light mode */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+body.dark-mode .footer a {
+    color: #7db3ff;
+    /* Azul ainda mais suave para dark mode */
+}
+
+body.dark-mode .footer a:hover {
+    color: #9cc7ff;
 }
 /* Responsividade para telas menores */
 @media screen and (max-width: 1024px) {
