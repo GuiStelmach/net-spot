@@ -1,19 +1,13 @@
-// Inicializador global para todos os módulos
+import { themeToggle } from './themeToggle.js';
+import { bulkProcessor } from './bulkProcessor.js';
+import { tabsManager } from './tabsManager.js';
+import { initFormValidation } from './formValidation.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar tema
-    if (typeof themeToggle !== 'undefined') {
-        themeToggle.init();
-    }
-
-    // Inicializar bulk processor
-    if (typeof bulkProcessor !== 'undefined') {
-        bulkProcessor.init();
-    }
-
-    // Inicializar gerenciador de abas
-    if (typeof tabsManager !== 'undefined') {
-        tabsManager.init();
-    }
-
+    themeToggle.init();
+    bulkProcessor.init();
+    tabsManager.init();
+    initFormValidation();
     console.log('Inicialização concluída');
 });
+

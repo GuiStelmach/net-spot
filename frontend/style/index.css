@@ -1,43 +1,52 @@
-/* Fonte regular */
+/* Font Faces */
 @font-face {
     font-family: 'Outfit-Regular';
-    /* Nome para a fonte regular */
     src: url('../assets/fonts/Outfit-Regular.woff2') format('woff2'),
-        url('../assets/fonts/Outfit-Regular.woff') format('woff'),
-        url('../assets/fonts/Outfit-Regular.ttf') format('truetype');
+         url('../assets/fonts/Outfit-Regular.woff') format('woff'),
+         url('../assets/fonts/Outfit-Regular.ttf') format('truetype');
     font-weight: normal;
-    /* Peso normal */
     font-style: normal;
 }
 
-/* Fonte em negrito (bold) */
 @font-face {
     font-family: 'Outfit-Bold';
-    /* Nome para a fonte bold */
     src: url('../assets/fonts/Outfit-Bold.woff2') format('woff2'),
-        url('../assets/fonts/Outfit-Bold.woff') format('woff'),
-        url('../assets/fonts/Outfit-Bold.ttf') format('truetype');
+         url('../assets/fonts/Outfit-Bold.woff') format('woff'),
+         url('../assets/fonts/Outfit-Bold.ttf') format('truetype');
     font-weight: bold;
-    /* Peso bold */
     font-style: normal;
 }
 
-/* Resetando as margens e o padding de todos os elementos */
+
+/* CSS Variables & Reset */
+:root {
+    --primary: #3a6cf7;
+    --primary-hover: #05bdfc;
+    --primary-light: rgba(58, 108, 247, 0.1);
+    --primary-lighter: rgba(58, 108, 247, 0.05);
+    
+    --text-light: #000;
+    --bg-light: #f4f4f4;
+    --border-light: #ccc;
+    --field-light: #fff;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    
+    --text-dark: #f4f4f4;
+    --bg-dark: #1a1a1a;
+    --field-dark: #3a3a3a;
+    --border-dark: #555;
+    --shadow-dark: rgba(0, 0, 0, 0.5);
+    
+    --text-color: var(--text-light);
+    --bg-color: var(--bg-light);
+    --border-color: var(--border-light);
+    --field-color: var(--field-light);
+    --shadow-color: var(--shadow-light);
+}
+
 * {
     margin: 0;
-    /* Remove a margem padrão de todos os elementos */
     padding: 0;
-    /* Remove o padding padrão de todos os elementos */
-
-    --text-light-mode: #000;
-    --bg-light-mode: #f4f4f4;
-    --text-dark-mode: #f4f4f4;
-    --bg-dark-mode: #1a1a1a;
-    
-    /* Variáveis ativas (modo light por padrão) */
-    --text-color: var(--text-light-mode);
-    --bg-color: var(--bg-light-mode);
-    --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -45,39 +54,31 @@ body {
         url("../assets/images/listralarga.svg"),
         url('../assets/images/listramedia.svg');
     background-repeat: no-repeat;
-    background-position:
-        105% bottom,
-        /* Primeira listra a direita, ajustada com vw para maior flexibilidade */
-        95% bottom,
-        /* Segunda listra a direita */
-        0% bottom;
-    /* Terceira listra no canto esquerdo inferior */
+    background-position: 105% bottom, 95% bottom, 0% bottom;
     background-size: 45vh;
     background-color: #f4f4f4;
     color: #000;
     min-height: 100vh;
-    /* Usa min-height em vez de height para permitir crescimento */
     display: flex;
     flex-direction: column;
-    /* Prepara para layout com footer fixo */
     padding-bottom: 80px;
-    /* Espaço para o footer fixo não sobrepor conteúdo */
     overflow: hidden;
-    /* Ignora tudo que ultrapassa a viewport, evitando scroll */
     transition: background-color 0.3s ease, color 0.3s ease;
-    /* Suaviza a transição entre temas */
 }
 
-/* Modo Dark */
+
 body.dark-mode {
+    --text-color: var(--text-dark);
+    --bg-color: var(--bg-dark);
+    --border-color: var(--border-dark);
+    --field-color: var(--field-dark);
+    --shadow-color: var(--shadow-dark);
     background-color: #1a1a1a;
     color: #f4f4f4;
-    --text-color: #f4f4f4;
-    --bg-color: #1a1a1a;
-    --shadow-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Botão de alternância de tema */
+
+/* Theme Toggle Button */
 .theme-toggle {
     position: fixed;
     top: 20px;
@@ -111,222 +112,151 @@ body.dark-mode .theme-toggle {
 
 body.dark-mode .theme-toggle:hover {
     background-color: rgba(255, 193, 7, 1);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+
 
 .body-consult {
     font-family: 'Outfit-Bold', sans-serif;
-    /* Aplica a fonte personalizada com fallback para fontes genéricas */
     display: flex;
-    /* Define o layout flexível para o contêiner do corpo da página */
     flex-direction: column;
-    /* Organiza os itens na vertical (logo em cima, formulário embaixo) */
     align-items: center;
-    /* Centraliza os itens horizontalmente */
     justify-content: flex-start;
-    /* Alinha os itens ao topo da tela */
     padding-top: 20px;
-    /* Adiciona um pequeno espaço entre o topo da tela e o conteúdo */
     width: 100%;
 }
 
 .logo img {
     max-width: 100%;
-    /* Faz com que a imagem ocupe toda a largura possível sem ultrapassar o limite */
     height: 120px;
-    /* Mantém a proporção da imagem (altura ajustada proporcionalmente) */
-    margin-bottom: 0px;
-    /* Adiciona um espaço entre a imagem e o próximo item (formulário) */
+    margin-bottom: 0;
 }
+
 
 .body-consult-itens {
     display: flex;
-    /* Define o modelo de layout flexível para o formulário */
     justify-content: center;
-    /* Centraliza o conteúdo do formulário horizontalmente */
     align-items: center;
-    /* Alinha o conteúdo do formulário verticalmente no centro */
     text-align: center;
-    /* Centraliza o texto dentro do formulário */
     background-color: white;
-    /* Define o fundo do formulário como branco */
     padding: 20px;
-    /* Adiciona 20px de espaçamento interno dentro do formulário */
     border-radius: 0 0 8px 8px;
-    /* Adiciona bordas arredondadas apenas na base */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Adiciona uma sombra suave ao redor do formulário */
+    box-shadow: 0 4px 8px var(--shadow-light);
     width: 100%;
-    /* Faz o formulário ocupar toda a largura disponível */
     max-width: 700px;
-    /* Limita a largura máxima do formulário a 700px */
-    transition: background-color 0.3s ease;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body.dark-mode .body-consult-itens {
     background-color: #2a2a2a;
     color: #f4f4f4;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px var(--shadow-dark);
 }
+
 
 form {
     display: flex;
-    /* Define o modelo de layout flexível para os itens dentro do formulário */
     flex-direction: column;
-    /* Organiza os itens na horizontal (label e input lado a lado) */
     gap: 10px;
-    /* Adiciona 10px de espaço entre os itens do formulário */
     align-items: center;
-    /* Alinha os itens verticalmente no centro */
     justify-content: center;
-    /* Centraliza os itens horizontalmente dentro do formulário */
 }
 
 .form-group {
     display: flex;
     flex-direction: row;
-    /* Mantém os campos CEP e Número na mesma linha */
     gap: 10px;
     align-items: center;
 }
 
-fieldset#Nome label {
-    display: block;
-    width: 10%;
-    float: left;
-}
-
-fieldset {
-    width: 100%;
-    /* Faz o fieldset ocupar toda a largura disponível */
-    max-width: 450px;
-    /* Define uma largura máxima para melhor visualização */
-    border: 2px solid #ccc;
-    /* Adiciona uma borda cinza ao redor do fieldset */
-    border-radius: 4px;
-    /* Arredonda as bordas do fieldset */
-    padding: 10px 15px;
-    /* Adiciona espaçamento interno ao fieldset */
-    margin: 10px 0;
-    /* Adiciona margem acima e abaixo do fieldset */
+label {
     display: flex;
-    /* Usa layout flexível */
-    flex-wrap: wrap;
-    /* Permite que os elementos quebrem para a linha de baixo se necessário */
-    gap: 10px;
-    /* Adiciona espaçamento entre os elementos internos */
     align-items: center;
-    /* Alinha os itens verticalmente no centro */
-    justify-content: flex-start;
-    /* Alinha os itens dentro do fieldset */
-    transition: border-color 0.3s ease;
-}
-
-body.dark-mode fieldset {
-    border-color: #555;
-}
-
-legend {
-    font-size: 18px;
-    /* Define o tamanho da fonte do legend */
-    font-weight: bold;
-    /* Deixa o texto do legend em negrito */
-    color: #333;
-    /* Define uma cor escura para o texto do legend */
-    transition: color 0.3s ease;
-}
-
-body.dark-mode legend {
-    color: #f4f4f4;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 label input[type="checkbox"] {
     margin-right: 5px;
-    /* Adiciona espaço entre a checkbox e o texto da label */
     transform: scale(1.2);
-    /* Aumenta ligeiramente o tamanho da checkbox */
 }
 
-label {
-    font-size: 16px;
-    /* Define o tamanho da fonte para as labels */
-    text-align: center;
-    /* Centraliza o texto das labels */
-    margin-right: 10px;
-    /* Adiciona 10px de espaço à direita da label (distância para o input) */
-    flex-shrink: 0;
-    /* Impede que o texto da label encolha se o espaço for pequeno */
+
+fieldset {
+    width: 100%;
+    max-width: 450px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    transition: border-color 0.3s ease;
+}
+
+legend {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-color);
+    transition: color 0.3s ease;
 }
 
 input {
     padding: 10px;
-    /* Adiciona 10px de espaçamento interno nos inputs */
     font-size: 16px;
-    /* Define o tamanho da fonte nos inputs */
-    border: 1px solid #ccc;
-    /* Define uma borda fina e cinza nos inputs */
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    /* Adiciona bordas arredondadas aos inputs */
     width: 100%;
-    /* Faz o input ocupar toda a largura disponível dentro do contêiner */
     max-width: 300px;
-    /* Limita a largura máxima dos inputs a 300px */
     margin: 0;
-    /* Remove a margem automática nos inputs */
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    background-color: var(--field-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
 }
 
-body.dark-mode input {
-    background-color: #3a3a3a;
-    color: #f4f4f4;
-    border-color: #555;
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(58, 108, 247, 0.1);
 }
 
 button {
-    padding: 10px;
-    /* Adiciona 10px de espaçamento interno no botão */
+    padding: 10px 20px;
     font-size: 16px;
-    /* Define o tamanho da fonte no botão */
-    background-color: #3a6cf7;
-    /* Define a cor de fundo do botão como azul */
+    background-color: var(--primary);
     color: white;
-    /* Define a cor do texto (letra) do botão como branca */
     border: none;
-    /* Remove a borda padrão do botão */
     border-radius: 4px;
-    /* Adiciona bordas arredondadas ao botão */
     cursor: pointer;
-    /* Altera o cursor para uma mãozinha quando passar o mouse sobre o botão */
+    transition: all 0.3s ease;
     margin-left: 10px;
-    /* Adiciona um pequeno espaço à esquerda do botão (distância para o input) */
 }
 
-button:hover {
-    background-color: #05bdfc;
-    /* Altera a cor de fundo do botão para um azul mais claro quando o mouse passa por cima */
+button:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(58, 108, 247, 0.3);
 }
 
-label {
-    display: flex;
-    /* Usa flexbox para alinhar checkbox e texto */
-    align-items: center;
-    /* Centraliza verticalmente */
-    font-size: 16px;
-    /* Define o tamanho da fonte das labels dentro do fieldset */
-    cursor: pointer;
-    /* Altera o cursor para uma mão ao passar sobre as labels */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
+
 
 
 .response-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Centraliza o conteúdo horizontalmente */
     justify-content: center;
     text-align: center;
-    /* Centraliza o texto */
     margin-top: 50px;
-    /* Espaço entre o formulário e a resposta */
     width: 100%;
 }
 
@@ -347,6 +277,7 @@ label {
     left: 0;
     z-index: 999;
 }
+
 .spinner {
     border: 4px solid rgba(255, 255, 255, 0.3);
     border-top: 4px solid #3498db;
@@ -366,42 +297,56 @@ label {
     font-weight: bold;
 }
 
+
 #result {
     margin-top: 35px;
     font-size: 20px;
     font-family: 'Outfit-Bold', sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body.dark-mode #result {
     background-color: #2a2a2a;
     color: #f4f4f4;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #333;
-    padding: 15px;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 500px;
 }
+
+.result-address {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.result-no-coverage {
+    color: #ff9800;
+}
+
+.result-error {
+    color: #f44336;
+}
+
 .notification {
     position: fixed;
-    bottom: 20px;  /* Ajuste para o fundo da tela */
-    left: 20px;    /* Ajuste para a lateral esquerda */
+    bottom: 20px;
+    left: 20px;
     z-index: 1000;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    /* Espaçamento entre alertas empilhados */
 }
 
 .alert-box {
-    background-color: #f44336; /* Cor de alerta (vermelho) */
+    background-color: #f44336;
     color: white;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
     font-family: Arial, sans-serif;
     font-size: 16px;
     display: flex;
@@ -415,29 +360,27 @@ body.dark-mode #result {
 
 .alert-box i {
     flex-shrink: 0;
-    /* Impede que o ícone encolha */
     font-size: 18px;
 }
 
 .alert-box span {
     flex: 1;
-    /* Faz a mensagem ocupar espaço disponível */
 }
 
 .alert-box.success {
-    background-color: #4CAF50; /* Cor de sucesso (verde) */
+    background-color: #4CAF50;
 }
 
 .alert-box.info {
-    background-color: #2196F3; /* Cor de informação (azul) */
+    background-color: #2196F3;
 }
 
 .alert-box.warning {
-    background-color: #ff9800; /* Cor de aviso (laranja) */
+    background-color: #ff9800;
 }
 
 .alert-box.error {
-    background-color: #f44336; /* Cor de erro (vermelho) */
+    background-color: #f44336;
 }
 
 @keyframes slideIn {
@@ -462,6 +405,11 @@ body.dark-mode #result {
     }
 }
 
+.alert-box {
+    animation: slideIn 0.3s ease;
+}
+
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -474,9 +422,7 @@ body.dark-mode #result {
     padding: 10px 0;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     background-color: transparent;
-    /* Fundo completamente transparente */
     text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
-    /* Sombra branca no texto para melhorar legibilidade */
     color: #333;
     z-index: 10;
     transition: color 0.3s ease, text-shadow 0.3s ease;
@@ -485,12 +431,10 @@ body.dark-mode #result {
 body.dark-mode .footer {
     color: #f4f4f4;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
-    /* Sombra escura para melhorar legibilidade em dark mode */
 }
 
 .footer a {
     color: #2563eb;
-    /* Azul mais forte para leitura confortável em light mode */
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -502,12 +446,12 @@ body.dark-mode .footer {
 
 body.dark-mode .footer a {
     color: #7db3ff;
-    /* Azul ainda mais suave para dark mode */
 }
 
 body.dark-mode .footer a:hover {
     color: #9cc7ff;
 }
+
 /* Responsividade para telas menores */
 @media screen and (max-width: 1024px) {
     body {
@@ -1100,8 +1044,7 @@ body.dark-mode .footer a:hover {
     }
 }
 
-/* ===== TABS STYLING ===== */
-
+/* Tabs Styling */
 .form-tabs {
     display: flex;
     gap: 0;
@@ -1109,11 +1052,8 @@ body.dark-mode .footer a:hover {
     width: 100%;
     max-width: 700px;
     margin: 20px auto 0;
-    border-bottom: 2px solid #e0e0e0;
-}
-
-body.dark-mode .form-tabs {
-    border-bottom-color: #444;
+    border-bottom: 2px solid var(--border-color);
+    transition: border-color 0.3s ease;
 }
 
 .tab-btn {
@@ -1134,7 +1074,7 @@ body.dark-mode .tab-btn {
 }
 
 .tab-btn:hover {
-    color: #3a6cf7;
+    color: var(--primary);
 }
 
 body.dark-mode .tab-btn:hover {
@@ -1142,8 +1082,8 @@ body.dark-mode .tab-btn:hover {
 }
 
 .tab-btn.active {
-    color: #3a6cf7;
-    border-bottom-color: #3a6cf7;
+    color: var(--primary);
+    border-bottom-color: var(--primary);
     font-weight: bold;
 }
 
@@ -1160,13 +1100,10 @@ body.dark-mode .tab-btn.active {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
+
 
 /* ===== BULK PROCESSOR STYLES ===== */
 
@@ -1207,23 +1144,23 @@ body.dark-mode .bulk-header p {
 }
 
 .upload-area {
-    border: 2px dashed #3a6cf7;
+    border: 2px dashed var(--primary);
     border-radius: 8px;
     padding: 40px 20px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    background-color: rgba(58, 108, 247, 0.05);
+    background-color: var(--primary-lighter);
 }
 
 .upload-area:hover {
-    border-color: #05bdfc;
-    background-color: rgba(5, 189, 252, 0.1);
+    border-color: var(--primary-hover);
+    background-color: var(--primary-light);
 }
 
 .upload-area.drag-over {
-    border-color: #05bdfc;
-    background-color: rgba(5, 189, 252, 0.15);
+    border-color: var(--primary-hover);
+    background-color: var(--primary-light);
     transform: scale(1.02);
 }
 
@@ -1240,7 +1177,7 @@ body.dark-mode .upload-area.drag-over {
 
 .upload-area i {
     font-size: 48px;
-    color: #3a6cf7;
+    color: var(--primary);
     margin-bottom: 10px;
     display: block;
 }
@@ -1255,10 +1192,6 @@ body.dark-mode .upload-area i {
     color: var(--text-color);
 }
 
-body.dark-mode .upload-area p {
-    color: #f4f4f4;
-}
-
 .upload-area small {
     display: block;
     font-size: 12px;
@@ -1266,9 +1199,6 @@ body.dark-mode .upload-area p {
     opacity: 0.7;
 }
 
-body.dark-mode .upload-area small {
-    color: #f4f4f4;
-}
 
 .bulk-options {
     width: 100%;
@@ -1292,15 +1222,18 @@ body.dark-mode .upload-area small {
     display: flex;
     align-items: center;
     gap: 8px;
+    font-weight: 500;
 }
 
 .btn-primary {
-    background-color: #3a6cf7;
+    background-color: var(--primary);
     color: white;
 }
 
 .btn-primary:hover:not(:disabled) {
-    background-color: #05bdfc;
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(58, 108, 247, 0.3);
 }
 
 .btn-primary:disabled {
@@ -1312,13 +1245,13 @@ body.dark-mode .upload-area small {
 .btn-secondary {
     background-color: #f0f0f0;
     color: #333;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
 }
 
 body.dark-mode .btn-secondary {
     background-color: #2a2a2a;
     color: #f4f4f4;
-    border-color: #555;
+    border-color: var(--border-dark);
 }
 
 .btn-secondary:hover {
@@ -1332,14 +1265,15 @@ body.dark-mode .btn-secondary:hover {
 .btn-small {
     padding: 8px 15px;
     font-size: 12px;
-    background-color: #3a6cf7;
+    background-color: var(--primary);
     color: white;
     min-width: auto;
 }
 
 .btn-small:hover {
-    background-color: #05bdfc;
+    background-color: var(--primary-hover);
 }
+
 
 /* Results Styling */
 .results-header {

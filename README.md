@@ -5,7 +5,7 @@
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   [![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-brightgreen.svg)](#)
-  [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](#)
+  [![Version](https://img.shields.io/badge/Version-1.0.1-blue.svg)](#)
   
   **Plataforma de consulta unificada de cobertura de internet fibra**
   
@@ -39,7 +39,7 @@ Unificar e simplificar o processo de consulta de cobertura de internet fibra, re
 
 ---
 
-## 🛠️ Stack Tecnológico
+## 🛠️ Stack Utilizada
 
 ### Frontend
 - **HTML5** - Estrutura semântica
@@ -99,17 +99,17 @@ net-spot/
 │       └── index.css       # Estilos globais e dark mode
 ├── backend/
 │   ├── api/
-│   │   ├── api.js          # Integração com MelhorPlano API
-│   │   └── provider.js     # Processamento de provedores
+│   │   ├── apiClient.js     # Requisições à MelhorPlano API
+│   │   └── provider.js      # Adaptação e mapeamento de dados de provedores
 │   ├── modules/
+│   │   ├── alertSystem.js   # Sistema de notificações na UI
 │   │   ├── bulkProcessor.js # Lógica de processamento em massa
 │   │   ├── formValidation.js # Validação e submissão de formulários
 │   │   ├── init.js         # Inicialização da aplicação
+│   │   ├── operatorSelection.js # Seleção de operadoras
 │   │   ├── tabsManager.js  # Gerenciamento de abas (Simples/Massa)
-│   │   └── themeToggle.js  # Sistema de dark mode
-│   └── utils/
-│       ├── validateNumber.js # Utilitário de validação de número
-│       └── validateZipcode.js # Utilitário de validação de CEP
+│   │   ├── themeToggle.js  # Sistema de dark mode
+│   │   └── validators.js   # Validações de CEP e número
 ├── index.html              # Página principal da aplicação
 ├── package.json            # Metadados do projeto
 ├── EXTRAÇÃO_EM_MASSA.md    # Documentação da funcionalidade de extração
