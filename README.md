@@ -170,6 +170,7 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 Encontrou um bug ou tem uma sugestão? 
 - 📧 Abra uma [issue](https://github.com/GuiStelmach/net-spot/issues)
 - 🔗 Faça um fork e envie um pull request
+- 🌐 Faça um teste [Clicando Aqui](https://guistelmach.github.io/net-spot/)
 
 ---
 
